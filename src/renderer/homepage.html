@@ -3,41 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>One Piece Weather App</title>
+    <title>Weather App</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="title-bar">
-        <h1>Tempo</h1>
-        <div class="button-container">
-            <button id="minimizar">—</button>
-            <button id="fechar">×</button>  
-        </div>
-    </div>
-    
     <header>
         <h1>Tempo</h1>
         <div class="temperature-controller">
-            <div class="temp-celcius">
-                <img src="../assets/celsius.png" alt="">
-            </div>
-            <div class="temp-farenheint">
-                <img src="../assets/fahrenheit.png" alt="">
-            </div>
+            <button class="temp-celsius">
+                <img src="../assets/celsius.png" alt="Celsius">
+            </button>
+            <button class="temp-fahrenheit">
+                <img src="../assets/fahrenheit.png" alt="Fahrenheit">
+            </button>
         </div>
     </header>
 
+    <!-- Exibição de dados do clima -->
+    <div id="weather-info">
+        <p id="condition">Carregando condição do tempo...</p>
+        <p id="temperature">Carregando temperatura...</p>
+    </div>
 
-    <script>
-        const { ipcRenderer } = require('electron');
-
-        document.getElementById('fechar').addEventListener('click', () => {
-            ipcRenderer.send('fechar-janela');
-        });
-
-        document.getElementById('minimizar').addEventListener('click', () => {
-            ipcRenderer.send('minimizar-janela');
-        });
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./js/homepage.js"></script>
 </body>
 </html>

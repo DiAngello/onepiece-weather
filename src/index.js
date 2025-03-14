@@ -1,15 +1,23 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow } = require('electron');
+const axios = require('axios');
 const path = require('node:path');
+require('dotenv').config(); 
+
+const apiKey = process.env.API_KEY; 
 
 let mainWindow;
+
+const LATITUDE = -15.7797; 
+const LONGITUDE = -47.9297; 
 
 const createWindow = () => {
   mainWindow = new BrowserWindow({
     width: 400,
     height: 460,
-    frame: false, // Remove a moldura padrão
-    transparent: true, // Permite bordas arredondadas
-    resizable: false, // Impede redimensionamento
+    frame: false,
+    transparent: true,
+    resizable: false,
+    hasShadow: false,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
@@ -20,16 +28,34 @@ const createWindow = () => {
   mainWindow.loadFile(path.join(__dirname, './renderer/homepage.html'));
 };
 
-// Comunicação com o front-end
-ipcMain.on('fechar-janela', () => {
-  if (mainWindow) mainWindow.close();
-});
+async function fetchWeatherData() {
+  try {
+    const params = {
+      lat: LATITUDE,
+      lon: LONGITUDE,
+      units: 'metric', 
+      appid: apiKey, 
+    };
 
-ipcMain.on('minimizar-janela', () => {
-  if (mainWindow) mainWindow.minimize();
-});
+    const url = 'https://api.openweathermap.org/data/2.5/weather';
+    const response = await axios.get(url, { params });
 
-app.whenReady().then(createWindow);
+    const weather = response.data.weather[0];
+    const temperature = response.data.main.temp;
+
+    mainWindow.webContents.send('weather-data', {
+      condition: weather.description,
+      temperature: temperature,
+    });
+  } catch (error) {
+    console.error('Erro ao buscar dados do clima:', error);
+  }
+}
+
+app.whenReady().then(() => {
+  createWindow();
+  fetchWeatherData(); 
+});
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
