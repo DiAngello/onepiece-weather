@@ -94,11 +94,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 const translatedCondition = weatherTranslations[weather.description.toLowerCase()] || weather.description;
 
                 if (conditionElement) {
-                    conditionElement.innerText = `Condição: ${translatedCondition}`;
+                    conditionElement.innerText = `${translatedCondition} agora`;
                 }
 
                 if (temperatureElement) {
-                    temperatureElement.innerText = `Temperatura: ${temperature}°${temperatureUnit === 'imperial' ? 'F' : 'C'}`;
+                    temperatureElement.innerText = `${temperature}°${temperatureUnit === 'imperial' ? 'F' : 'C'}`;
                 }
             } else {
                 console.error('Dados de clima não encontrados na resposta da API.');

@@ -25,7 +25,12 @@ body {
   width: 100%;
   height: 100%;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
+}
+
+body {
+  border: 4px solid;
+  border-color: var(--navy-blue);
 }
 
 header {
@@ -34,7 +39,7 @@ header {
   align-items: center;
   background: var(--background-purple);
   height: 70px;
-  width: 360px;
+  width: 97.8%;
   margin: 0;
   padding: 0;
   position: fixed;
@@ -55,8 +60,8 @@ button {
 }
 
 button img {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
 }
 
 .temperature-controller {
@@ -77,11 +82,11 @@ button img {
 
 main {
   display: flex;
-  flex-direction: column; 
-  align-items: center; 
-  justify-content: center; 
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background-image: url("../assets/background.png");
-  width: 360px;
+  width: 400px;
   height: 390px;
   background-size: cover;
   background-repeat: no-repeat;
@@ -94,12 +99,41 @@ main {
 main img {
   width: 250px;
   height: 220px;
-  margin-top: 80px;
-  margin-bottom: 5px;
+  margin-top: 20px;
 }
 
 .weather-data {
-  text-align: center; 
+  color: var(--heading-text);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem 1.75rem;
+  gap: 0.625rem;
+  border-radius: 1.25rem;
+  border: 4px solid var(--heading-text);
+  background: var(--white);
+  width: 250px;
+  height: 58px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.bubble {
+  background-image: url("../assets/bubble.png") ;
+  display: flex;
+  padding: 1.5625rem 1.6875rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8.625rem;
+  flex-shrink: 0;
+  background-size: cover;
+  position: absolute;
+  top: 100px;
+  left: 30px;
+  z-index: 0;
 }
 
 h1 {
@@ -122,7 +156,7 @@ h3 {
   font-size: 1.5rem;
   font-weight: 400;
   text-align: center;
-  color: var(--heading-text);
+  color: var(--outline-purple);
 }
 
 h4 {

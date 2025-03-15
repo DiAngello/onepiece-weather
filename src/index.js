@@ -12,11 +12,11 @@ const LONGITUDE = -47.9297;
 
 const createWindow = () => {
   mainWindow = new BrowserWindow({
-    width: 360,
+    width: 400,
     height: 460,
     frame: false,
     transparent: true,
-    resizable: true,
+    resizable: false,
     hasShadow: false,
     webPreferences: {
       nodeIntegration: true,
