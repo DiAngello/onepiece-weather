@@ -8,6 +8,65 @@ document.addEventListener("DOMContentLoaded", function() {
 
     let temperatureUnit = 'metric';  
 
+    
+    const weatherTranslations = {
+        "thunderstorm with light rain": "Tempestade com chuva leve",
+        "thunderstorm with rain": "Tempestade com chuva",
+        "thunderstorm with heavy rain": "Tempestade com chuva forte",
+        "light thunderstorm": "Tempestade leve",
+        "thunderstorm": "Tempestade",
+        "heavy thunderstorm": "Tempestade forte",
+        "ragged thunderstorm": "Tempestade irregular",
+        "thunderstorm with light drizzle": "Tempestade com garoa leve",
+        "thunderstorm with drizzle": "Tempestade com garoa",
+        "thunderstorm with heavy drizzle": "Tempestade com garoa forte",
+        "light intensity drizzle": "Garoa leve",
+        "drizzle": "Garoa",
+        "heavy intensity drizzle": "Garoa forte",
+        "light intensity drizzle rain": "Garoa leve com chuva",
+        "drizzle rain": "Garoa com chuva",
+        "heavy intensity drizzle rain": "Garoa forte com chuva",
+        "shower rain and drizzle": "Chuva e garoa",
+        "heavy shower rain and drizzle": "Chuva forte e garoa",
+        "shower drizzle": "Garoa com chuva",
+        "light rain": "Chuva leve",
+        "moderate rain": "Chuva moderada",
+        "heavy intensity rain": "Chuva forte",
+        "very heavy rain": "Chuva muito forte",
+        "extreme rain": "Chuva extrema",
+        "freezing rain": "Chuva congelante",
+        "light intensity shower rain": "Chuva leve",
+        "shower rain": "Chuva",
+        "heavy intensity shower rain": "Chuva forte",
+        "ragged shower rain": "Chuva irregular",
+        "light snow": "Neve leve",
+        "snow": "Neve",
+        "heavy snow": "Neve forte",
+        "sleet": "Chuva congelada",
+        "light shower sleet": "Garoa congelada leve",
+        "shower sleet": "Garoa congelada",
+        "light rain and snow": "Chuva e neve leves",
+        "rain and snow": "Chuva e neve",
+        "light shower snow": "Neve leve com garoa",
+        "shower snow": "Neve com garoa",
+        "heavy shower snow": "Neve forte com garoa",
+        "mist": "Névoa",
+        "smoke": "Fumaça",
+        "haze": "Névoa seca",
+        "dust": "Poeira",
+        "fog": "Névoa",
+        "sand": "Areia",
+        "dust": "Poeira",
+        "ash": "Cinzas vulcânicas",
+        "squall": "Rajadas",
+        "tornado": "Tornado",
+        "clear sky": "Céu limpo",
+        "few clouds": "Poucas nuvens",
+        "scattered clouds": "Nuvens dispersas",
+        "broken clouds": "Nuvens fragmentadas",
+        "overcast clouds": "Nuvens densas"
+    };
+
     async function fetchWeatherData(latitude, longitude, temperatureUnit) {
         try {
             const params = {
@@ -32,8 +91,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 const conditionElement = document.getElementById('condition');
                 const temperatureElement = document.getElementById('temperature');
 
+                const translatedCondition = weatherTranslations[weather.description.toLowerCase()] || weather.description;
+
                 if (conditionElement) {
-                    conditionElement.innerText = `Condição: ${weather.description}`;
+                    conditionElement.innerText = `Condição: ${translatedCondition}`;
                 }
 
                 if (temperatureElement) {

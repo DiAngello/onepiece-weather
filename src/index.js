@@ -12,11 +12,11 @@ const LONGITUDE = -47.9297;
 
 const createWindow = () => {
   mainWindow = new BrowserWindow({
-    width: 400,
+    width: 360,
     height: 460,
     frame: false,
     transparent: true,
-    resizable: false,
+    resizable: true,
     hasShadow: false,
     webPreferences: {
       nodeIntegration: true,
@@ -26,6 +26,8 @@ const createWindow = () => {
   });
 
   mainWindow.loadFile(path.join(__dirname, './renderer/homepage.html'));
+
+  mainWindow.setIgnoreMouseEvents(false);
 };
 
 async function fetchWeatherData() {

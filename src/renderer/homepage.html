@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <header>
         <h1>Tempo</h1>
@@ -19,13 +21,20 @@
         </div>
     </header>
 
-    <!-- Exibição de dados do clima -->
-    <div id="weather-info">
-        <p id="condition">Carregando condição do tempo...</p>
-        <p id="temperature">Carregando temperatura...</p>
-    </div>
+    <main>
+        <div class="chopper-img">
+            <img src="../assets/chopper-img.png" alt="Chopper">
+        </div>
+
+        <div class="weather-data">
+            <h4 id="condition">Carregando condição do tempo...</h4>
+            <h4 id="temperature">Carregando temperatura...</h4>
+        </div>
+    </main>
+
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./js/homepage.js"></script>
 </body>
+
 </html>
